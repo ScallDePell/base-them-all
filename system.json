@@ -1,0 +1,15 @@
+{
+  "id": "base-them-all",
+  "title": "Base Them'All",
+  "description": "Système de jeu vierge pour Foundry VTT v14.",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "ScallDePell"
+    }
+  ]
+}
