@@ -1,28 +1,28 @@
 # Base Them'All
 
-Système de jeu vierge pour Foundry VTT v14.
+A blank game system for Foundry VTT v14.
 
 ## Installation
 
-Dans Foundry, onglet « Systèmes de jeu » → « Installer un système », coller l'URL du manifeste :
+In Foundry, go to the "Game Systems" tab → "Install System" and paste the manifest URL:
 
 ```
 https://github.com/ScallDePell/base-them-all/releases/latest/download/system.json
 ```
 
-Ou copier ce dépôt dans `Data/systems/base-them-all/` (le nom du dossier doit être identique à l'`id` du manifeste).
+Or copy this repository into `Data/systems/base-them-all/` (the folder name must match the manifest `id`).
 
-Le seul fichier requis par Foundry est `system.json`. Aucun type de document, script, style ni paramètre n'est déclaré.
+The only file Foundry requires is `system.json`. No document types, scripts, styles or settings are declared.
 
-## Publier une release
+## Publishing a release
 
-Dans l'onglet « Actions » du dépôt, choisir le workflow « Release », cliquer sur « Run workflow » et saisir la version (ex. `0.2.0`). Le tag `v0.2.0` est créé automatiquement.
+In the repository's "Actions" tab, select the "Release" workflow, click "Run workflow" and enter the version (e.g. `0.2.0`). The `v0.2.0` tag is created automatically.
 
-Ou pousser un tag `vX.Y.Z` :
+Or push a `vX.Y.Z` tag:
 
 ```
 git tag v0.2.0
 git push origin v0.2.0
 ```
 
-Le workflow `.github/workflows/release.yml` met à jour `version`, `manifest` et `download` dans `system.json`, crée `base-them-all.zip` et publie la release avec ces deux fichiers.
+The `.github/workflows/release.yml` workflow updates `version`, `manifest` and `download` in `system.json`, builds `base-them-all.zip` and publishes the release with both files.
