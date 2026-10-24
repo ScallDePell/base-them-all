@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Mettre à jour system.json
+        env:
+          TAG: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}
+        run: |
+          VERSION="${TAG#v}"
+          jq --arg version "$VERSION" \
+             --arg manifest "https://github.com/$REPO/releases/latest/download/system.json" \
+             --arg download "https://github.com/$REPO/releases/download/$TAG/base-them-all.zip" \
+             '.version = $version | .manifest = $manifest | .download = $download' \
+             system.json > system.tmp && mv system.tmp system.json
+
+      - name: Créer l'archive
+        run: zip -r base-them-all.zip system.json README.md
+
+      - name: Publier la release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: gh release create "$TAG" system.json base-them-all.zip --title "$TAG" --generate-notes

@@ -11,5 +11,8 @@
     {
       "name": "ScallDePell"
     }
-  ]
+  ],
+  "url": "https://github.com/ScallDePell/base-them-all",
+  "manifest": "https://github.com/ScallDePell/base-them-all/releases/latest/download/system.json",
+  "download": "https://github.com/ScallDePell/base-them-all/releases/download/v0.1.0/base-them-all.zip"
 }
