@@ -16,7 +16,9 @@ Le seul fichier requis par Foundry est `system.json`. Aucun type de document, sc
 
 ## Publier une release
 
-Pousser un tag `vX.Y.Z` :
+Dans l'onglet « Actions » du dépôt, choisir le workflow « Release », cliquer sur « Run workflow » et saisir la version (ex. `0.2.0`). Le tag `v0.2.0` est créé automatiquement.
+
+Ou pousser un tag `vX.Y.Z` :
 
 ```
 git tag v0.2.0

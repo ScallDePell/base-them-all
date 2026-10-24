@@ -4,6 +4,11 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version à publier (ex. 0.2.0)"
+        required: true
 
 permissions:
   contents: write
@@ -16,7 +21,7 @@ jobs:
 
       - name: Mettre à jour system.json
         env:
-          TAG: ${{ github.ref_name }}
+          TAG: ${{ inputs.version && format('v{0}', inputs.version) || github.ref_name }}
           REPO: ${{ github.repository }}
         run: |
           VERSION="${TAG#v}"
@@ -32,5 +37,5 @@ jobs:
       - name: Publier la release
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ github.ref_name }}
-        run: gh release create "$TAG" system.json base-them-all.zip --title "$TAG" --generate-notes
+          TAG: ${{ inputs.version && format('v{0}', inputs.version) || github.ref_name }}
+        run: gh release create "$TAG" system.json base-them-all.zip --title "$TAG" --target "$GITHUB_SHA" --generate-notes
